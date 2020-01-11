@@ -1,0 +1,21 @@
+#match-container {
+    border: 1px solid;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+#profile-container {
+    border: 1px solid;
+    padding: 10px;
+}
+
+#job-container {
+    border: 1px solid;
+    padding: 10px;
+}
+
+.match-calendar > .ant-fullcalendar-header > .ant-radio-group{
+    display: none;    
+}
+
