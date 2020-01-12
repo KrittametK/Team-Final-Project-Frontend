@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
 
-export class Service extends Component {
+class Schedule extends Component {
   render() {
     return (
         <div>
@@ -11,4 +11,5 @@ export class Service extends Component {
   }
 }
 
+export default Schedule;
 
