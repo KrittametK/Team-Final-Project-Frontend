@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Table, Tag, Popconfirm, message, Icon, Row, Modal, Input } from "antd";
+import { Table, Tag, Popconfirm, message, Icon, Row, Modal, Input, notification, Form } from "antd";
 import style from "../pages/Admin.module.css";
 import Axios from "axios"
 
 function confirm(e) {
   console.log(e);
-  Axios.delete("http://localhost:8080/", {
+  Axios.delete("http://localhost:8080/deleteadmin", {
     id: this.state.deleteId
   }).then(result => {
     console.log(result)
@@ -19,6 +19,17 @@ function cancel(e) {
   console.log(e);
   message.error("Cancle");
 }
+
+const notiCreate = () => {
+  notification.open({
+    message: 'Sucess',
+    description:
+      'Created User Admin Sucess',
+    onClick: () => {
+      console.log('Notification Clicked!');
+    },
+  });
+};
 export class ViewAdmin extends Component {
 
   state = {
@@ -37,8 +48,10 @@ export class ViewAdmin extends Component {
     user: []
   };
 
+
+
   componentDidMount = () => {
-    Axios.get("http://localhost:8080/")
+    Axios.get("http://localhost:8080/getalluser")
       .then(result => {
         this.setState({ user: result.data })
         console.log("refresh admin/user")
@@ -61,13 +74,18 @@ export class ViewAdmin extends Component {
 
   handlecreate = e => {
     console.log(e);
-    Axios.post("http://localhost:8080/", {
+    Axios.post("http://localhost:8080/registeradmin", {
       email: this.state.email,
       password: this.state.password,
       firstname: this.state.firstname,
       lastname: this.state.lastname
     }).then(result => {
       console.log(result)
+      this.setState({
+        visiblecreate: false
+      });
+      notiCreate()
+
     }).catch(err => {
       console.log({ message: err })
     })
@@ -78,7 +96,7 @@ export class ViewAdmin extends Component {
 
   handleedit = e => {
     console.log(e);
-    Axios.put("http://localhost:8080/", {
+    Axios.put("http://localhost:8080/edituser", {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       email: this.state.email,
@@ -104,8 +122,10 @@ export class ViewAdmin extends Component {
     });
   };
 
-  render() {
 
+
+  render() {
+    console.log(this.state.user)
     let columns = [
       {
         title: "e-mail",
@@ -216,6 +236,7 @@ export class ViewAdmin extends Component {
         <Row className={style.adminview}>
           <span>
             <Icon type="plus-circle" onClick={this.showModal} />
+
             <Modal
               title="Create Admin"
               visible={this.state.visiblecreate}
@@ -243,6 +264,7 @@ export class ViewAdmin extends Component {
                 onChange={e => this.setState({ lastname: e.target.value })}
               />
             </Modal>
+
 
             <Modal
               title="Edit User"
