@@ -1,13 +1,13 @@
 import React from 'react';
-import Home from './pages/Home'
-
+import Admin from './pages/Admin'
 import './App.css';
+import 'antd/dist/antd.css';
 
 class App extends React.Component{
   render(){
   return (
     <div className="App">
-      <Home />
+      <Admin />
     </div>
   );}
 }

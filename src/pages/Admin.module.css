@@ -1,0 +1,25 @@
+.adminnavbar {
+  width: 100%;
+  border: thin solid black;
+  text-align: right;
+  padding: 2px 10px;
+  background-color: #3a7fca;
+  color: white;
+  font-size: 18px;
+}
+
+.adminmenu {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.adminview {
+  text-align: right;
+  padding: 2px 10px;
+  font-size: 40px;
+}
+
+.createadminmodal {
+
+  margin-bottom: 10px !important;
+}
